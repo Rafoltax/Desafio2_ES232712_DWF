@@ -1,0 +1,129 @@
+{
+  "info": {
+    "name": "Book API Collection (Improved + Year Filter)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "List All Books (Paged)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/api/books?page=0&size=5&sort=title,asc",
+          "host": ["{{base_url}}"],
+          "path": ["api", "books"],
+          "query": [
+            { "key": "page", "value": "0" },
+            { "key": "size", "value": "5" },
+            { "key": "sort", "value": "title,asc" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Book by ID",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/api/books/1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "books", "1"]
+        }
+      }
+    },
+    {
+      "name": "Create Book",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Clean Code\",\n  \"author\": \"Robert C. Martin\",\n  \"publicationYear\": 2008\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/books",
+          "host": ["{{base_url}}"],
+          "path": ["api", "books"]
+        }
+      }
+    },
+    {
+      "name": "Update Book",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Clean Architecture\",\n  \"author\": \"Robert C. Martin\",\n  \"publicationYear\": 2017\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/books/1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "books", "1"]
+        }
+      }
+    },
+    {
+      "name": "Search Books by Title (Paged)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/api/books/search?title=clean&page=0&size=5&sort=publicationYear,desc",
+          "host": ["{{base_url}}"],
+          "path": ["api", "books", "search"],
+          "query": [
+            { "key": "title", "value": "clean" },
+            { "key": "page", "value": "0" },
+            { "key": "size", "value": "5" },
+            { "key": "sort", "value": "publicationYear,desc" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Filter Books by Year Range",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/api/books/filter/year?start=2000&end=2010&page=0&size=5&sort=title,asc",
+          "host": ["{{base_url}}"],
+          "path": ["api", "books", "filter", "year"],
+          "query": [
+            { "key": "start", "value": "2000" },
+            { "key": "end", "value": "2010" },
+            { "key": "page", "value": "0" },
+            { "key": "size", "value": "5" },
+            { "key": "sort", "value": "title,asc" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete Book by ID",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "{{base_url}}/api/books/1",
+          "host": ["{{base_url}}"],
+          "path": ["api", "books", "1"]
+        }
+      }
+    },
+    {
+      "name": "Create Invalid Book (Validation Test)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"\",\n  \"author\": \"\",\n  \"publicationYear\": -50\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/books",
+          "host": ["{{base_url}}"],
+          "path": ["api", "books"]
+        }
+      }
+    }
+  ]
+}
